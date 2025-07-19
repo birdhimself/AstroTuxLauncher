@@ -414,11 +414,8 @@ class AstroDedicatedServer:
         LOGGER.debug(f"Dedicated Server configuration (including overrides):\n{json.dumps(self.ds_config.to_dict(encode_json=True), indent=4)}")
         LOGGER.debug(f"Engine configuration (including overrides):\n{json.dumps(self.engine_config.to_dict(encode_json=True), indent=4)}")
         
-        # Warning, if encryption is enables
-        if self.engine_config.AllowEncryption:
-            LOGGER.warning("Encryption is enabled. Currently, this doesn't work when running the Astroneer Dedicated Server using WINE")
-            LOGGER.warning("Players that have encryption disabled will also ne be able to play on a server having encryption enabled")
-        else:
+        # Hint about client configuration if encryption is disabled on the server
+        if not self.engine_config.AllowEncryption:
             LOGGER.info("NOTICE: Encryption is disabled. All players that want to join the Dedicated Server have to disable encryption on their clients too")
         
         # RCON
