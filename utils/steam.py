@@ -11,13 +11,22 @@ import shutil
 import subprocess
 import time
 import logging
+import platform
 from utils.interface import run_proc_with_logging, safeformat, AP_SPINNER, AP_BAR
 from alive_progress import alive_bar
 from utils.misc import CONTROL_CODES_SUPPORTED
 
-DEPOTDL_LATEST_ZIP_URL="https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-x64.zip"
+# Determine the architecture and set the appropriate URL
+MACHINE_ARCH = platform.machine()
+if MACHINE_ARCH == 'aarch64' or MACHINE_ARCH == 'arm64':
+    DEPOTDL_LATEST_ZIP_URL="https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-arm64.zip"
+else:
+    DEPOTDL_LATEST_ZIP_URL="https://github.com/SteamRE/DepotDownloader/releases/latest/download/DepotDownloader-linux-x64.zip"
 
 LOGGER = logging.getLogger("Steam")
+
+# Log the detected architecture and URL at module load time
+LOGGER.debug(f"Detected architecture: {MACHINE_ARCH}, using URL: {DEPOTDL_LATEST_ZIP_URL}")
 
 def reporthook(blocks_done, block_size, file_size):
     size_trans = blocks_done * block_size
