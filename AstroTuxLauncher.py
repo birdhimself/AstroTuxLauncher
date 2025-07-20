@@ -72,6 +72,7 @@ class LauncherCommand(Enum):
     START = "start"
     INSTALL = "install"
     UPDATE = "update"
+    GENCONFIG = "genconfig"
 
 
 
@@ -582,6 +583,11 @@ if __name__ == "__main__":
     print(BANNER_TEXT)
     print(f"v{LAUNCHER_VERSION}")
     print("")
+
+    if args.command == LauncherCommand.GENCONFIG:
+        print("Generating config and exiting...")
+        LauncherConfig.ensure_toml_config(args.config_path)
+        sys.exit(0)
     
     try:
         launcher = AstroTuxLauncher(args.config_path, args.astro_path, args.depotdl_exec, force_debug_log=args.log_debug)
