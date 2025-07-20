@@ -128,7 +128,7 @@ class LauncherConfig:
     LogDebugMessages: bool = False  # Wether the the console and log file should include log messages with level logging.DEBUG
     
     AstroServerPath: str = "AstroneerServer"    # The path, where the Astroneer DS installation should reside
-    OverrideWinePath: Optional[str] = field(metadata=config(exclude=ExcludeIfNone), default=None)   # Path to wine executable, only used, if set
+    OverrideWinePath: str = ""                  # Path to wine executable, only used, if set
     WinePrefixPath: str = "winepfx"             # The path, where the Wine prefix should be stored
     WineBootTimeout: int = 30                   # The time (in seconds) that Wine will wait when running *Wineboot* before it times out
     LogPath: str = "logs"                       # The path where logs should be saved
@@ -136,9 +136,9 @@ class LauncherConfig:
     PlayfabAPIInterval: int = 2                 # Time to wait between Playfab API requests
     ServerStatusInterval: float = 3             # Time to wait between Server Status checks
     
-    DisableEncryption: bool = False  # Wether to disable encryption for the Astroneer DS. CURRENTLY REQUIRED TO BE "True" FOR HOSTING ON LINUX
+    DisableEncryption: bool = False             # Wether to disable encryption for the Astroneer DS. CURRENTLY REQUIRED TO BE "True" FOR HOSTING ON LINUX
 
-    WrapperPath: Optional[str] = field(metadata=config(exclude=ExcludeIfNone), default=None) # Optional wrapper to run Wine with (e.g. box64)
+    WrapperPath: str = ""                       # Optional wrapper to run Wine with (e.g. box64)
 
     @staticmethod
     def ensure_toml_config(config_path):
@@ -216,7 +216,7 @@ class AstroTuxLauncher():
         self.wineexec = shutil.which("wine")
         self.wineserverexec = shutil.which("wineserver")
         
-        if self.config.OverrideWinePath is not None and path.isfile(self.config.OverrideWinePath):
+        if self.config.OverrideWinePath and path.isfile(self.config.OverrideWinePath):
             self.wineexec = path.abspath(self.config.OverrideWinePath)
             self.wineserverexec = path.join(path.dirname(self.wineexec), "wineserver")
         
