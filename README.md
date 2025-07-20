@@ -1,7 +1,16 @@
 # AstroTuxLauncher
 
-
 Launcher and management utility for running an Astroneer Dedicated Server on Linux using WINE.
+
+## Changes in this fork compared to upstream
+
+[See changed code here!](https://github.com/JoeJoeTV/AstroTuxLauncher/compare/master...birdhimself:AstroTuxLauncher:master)
+
+* [DepotDownloader](https://github.com/SteamRE/DepotDownloader) will be downloaded for the correct architecture (`arm64`/`amd64` only)
+* Astroneer's encryption is enabled by default (Wine supports it as of 10.6, warning messages have been removed accordingly)
+* Added `WrapperPath` that prefixes all Wine commands with a wrapper (can be used to run through [Box64](https://github.com/ptitSeb/box64) for example)
+* Added `genconfig` command that generates the `launcher.toml` and then exits
+* All configuration keys now have default values instead of some being optional
 
 ## Prerequisites
 

@@ -582,6 +582,7 @@ if __name__ == "__main__":
     print("")
     print(BANNER_TEXT)
     print(f"v{LAUNCHER_VERSION}")
+    print("Fork by birdhimself: https://github.com/birdhimself/AstroTuxLauncher")
     print("")
 
     if args.command == LauncherCommand.GENCONFIG:
