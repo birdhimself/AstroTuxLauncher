@@ -135,7 +135,7 @@ class LauncherConfig:
     PlayfabAPIInterval: int = 2                 # Time to wait between Playfab API requests
     ServerStatusInterval: float = 3             # Time to wait between Server Status checks
     
-    DisableEncryption: bool = True  # Wether to disable encryption for the Astroneer DS. CURRENTLY REQUIRED TO BE "True" FOR HOSTING ON LINUX
+    DisableEncryption: bool = False  # Wether to disable encryption for the Astroneer DS. CURRENTLY REQUIRED TO BE "True" FOR HOSTING ON LINUX
 
     WrapperPath: Optional[str] = field(metadata=config(exclude=ExcludeIfNone), default=None) # Optional wrapper to run Wine with (e.g. box64)
 
