@@ -586,7 +586,7 @@ if __name__ == "__main__":
 
     if args.command == LauncherCommand.GENCONFIG:
         print("Generating config and exiting...")
-        LauncherConfig.ensure_toml_config(args.config_path)
+        LauncherConfig.ensure_toml_config(path.abspath(args.config_path))
         sys.exit(0)
     
     try:
