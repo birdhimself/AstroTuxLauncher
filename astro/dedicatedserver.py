@@ -1199,11 +1199,6 @@ class AstroDedicatedServer:
             Returns: A boolean indicating the success
         """
         
-        # Prevent people from using this
-        LOGGER.warning("Starting a new save game has been disabled currently due to the dedicated server crashing under wine while performing the operation")
-        LOGGER.warning("Please create new save games from inside the game")
-        return False
-        
         if not self.rcon.connected or (self.status != ServerStatus.RUNNING):
             return False
         
